@@ -6,7 +6,7 @@ A packaging-proof review prototype: compare selectable text from an approved PDF
 
 ## See the workflow
 
-[Download the 42-second illustrated walkthrough](launch/media/ProofDelta-demo.mp4). It uses the real fictional sample differences; it is not a screen recording. The video is silent and captioned in-frame.
+[Watch the narrated walkthrough](launch/media/ProofDelta-Raya-Voice.mp4) — approximately 35 seconds, narrated with the existing Raya — My Voice clone in HeyGen at natural speed, matching the ReleaseRadar voice. It uses the real fictional sample differences; it is an illustrated walkthrough, not a screen recording. [Original silent edition](launch/media/ProofDelta-demo.mp4).
 
 ![Example: sample net weight changes from 180 g to 160 g](launch/media/ProofDelta-cover.png)
 

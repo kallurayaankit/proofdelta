@@ -10,3 +10,7 @@ The requested GitHub source package, demo video and two social-post drafts are p
 GitHub destination: https://github.com/kallurayaankit/proofdelta. The owner created this public repository for the prepared source. Publication is performed through the connected GitHub tools.
 
 The code export contains tracked project files, the launch assets and a public-facing README. It excludes `.git`, `.openai`, private verification notes, runtime folders and dependencies. It preserves upstream licensing files. The existing private Site has not been redeployed or made public.
+
+## Raya narrated edition
+
+`media/ProofDelta-Raya-Voice.mp4` adds the existing Raya — My Voice narration at natural speed. Runtime is approximately 35 seconds; graphics follow the returned speech alignment. `narration.txt` contains the spoken script. The original silent edition is retained. Full stream decode, exact alignment text, seven scene layouts and audio levels were checked; full listening/playback review was unavailable. No social post was published.

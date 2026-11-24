@@ -93,14 +93,18 @@ def frame(n):
         txt(d,(54,550),'Building ProofDelta. Feedback welcome.',38,bold=True)
         txt(d,(54,604),'Prototype · React frontend · Rust service tested locally',22,MUTED)
     return im
-cmd=['ffmpeg','-y','-f','rawvideo','-vcodec','rawvideo','-pix_fmt','rgb24','-s',f'{W}x{H}','-r',str(FPS),'-i','-','-an','-c:v','libx264','-preset','fast','-crf','21','-pix_fmt','yuv420p','-movflags','+faststart',str(OUT/'ProofDelta-demo.mp4')]
-p=subprocess.Popen(cmd,stdin=subprocess.PIPE,stderr=(OUT/'ffmpeg.log').open('w'))
-try:
-    for n in range(FPS*DURATION): p.stdin.write(frame(n).tobytes())
-finally: p.stdin.close()
-if p.wait()!=0: raise RuntimeError('ffmpeg failed; inspect ffmpeg.log')
-frame(12*FPS).save(OUT/'ProofDelta-cover.png')
-contact=Image.new('RGB',(1280,4*360),PAPER)
-for i,t in enumerate([2,6,13,19,27,33,39]): contact.paste(frame(t*FPS).resize((640,360)),((i%2)*640,(i//2)*360))
-contact.save(OUT/'contact-sheet.jpg',quality=92)
-print(OUT/'ProofDelta-demo.mp4')
+def main():
+    cmd=['ffmpeg','-y','-f','rawvideo','-vcodec','rawvideo','-pix_fmt','rgb24','-s',f'{W}x{H}','-r',str(FPS),'-i','-','-an','-c:v','libx264','-preset','fast','-crf','21','-pix_fmt','yuv420p','-movflags','+faststart',str(OUT/'ProofDelta-demo.mp4')]
+    p=subprocess.Popen(cmd,stdin=subprocess.PIPE,stderr=(OUT/'ffmpeg.log').open('w'))
+    try:
+        for n in range(FPS*DURATION): p.stdin.write(frame(n).tobytes())
+    finally: p.stdin.close()
+    if p.wait()!=0: raise RuntimeError('ffmpeg failed; inspect ffmpeg.log')
+    frame(12*FPS).save(OUT/'ProofDelta-cover.png')
+    contact=Image.new('RGB',(1280,4*360),PAPER)
+    for i,t in enumerate([2,6,13,19,27,33,39]): contact.paste(frame(t*FPS).resize((640,360)),((i%2)*640,(i//2)*360))
+    contact.save(OUT/'contact-sheet.jpg',quality=92)
+    print(OUT/'ProofDelta-demo.mp4')
+
+if __name__ == '__main__':
+    main()
