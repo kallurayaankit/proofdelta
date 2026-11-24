@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {simulateCheckout} from '../src/checkout.js';
+const base='http://127.0.0.1:8787';
+const nativeFetch=globalThis.fetch;
+const calls=[];
+globalThis.document={querySelector:()=>({content:'rust-local'})};
+globalThis.fetch=async(path,options)=>{calls.push({path,options});return nativeFetch(new URL(path,base),options);};
+const receipt=await simulateCheckout();
+assert.equal(receipt.charged,false);assert.equal(receipt.mode,'simulation');assert.equal(receipt.amount_minor,3900);
+assert.deepEqual(calls,[{path:'/api/checkout/simulate',options:{method:'POST',headers:{'X-ProofDelta-Simulation':'1'}}}]);
+const root=await nativeFetch(base);assert((await root.text()).includes('content="rust-local"'));
+const config=await (await nativeFetch(base+'/api/config')).json();assert.equal(config.pdf_processing,'browser-local');
+const pdf=await nativeFetch(base+'/samples/approved-oat-bites.pdf');assert.equal(pdf.status,200);assert((await pdf.text()).startsWith('%PDF-'));
+const rejected=await nativeFetch(base+'/api/checkout/simulate',{method:'POST',headers:{'X-ProofDelta-Simulation':'1'},body:'synthetic unexpected data'});assert.equal(rejected.status,400);
+globalThis.fetch=async()=>({ok:true,json:async()=>({mode:'live',charged:true,unlocked:true})});await assert.rejects(simulateCheckout(),/Invalid simulation receipt/);
+globalThis.fetch=async()=>({ok:false});await assert.rejects(simulateCheckout(),/Simulation failed/);
+globalThis.document={querySelector:()=>null};globalThis.fetch=()=>{throw Error('Static simulation must not contact the network');};assert.equal((await simulateCheckout()).charged,false);
+console.log('Live Rust HTTP and frontend adapter verified: static assets, simulation, no file payload, fail-closed receipts, offline static mode.');

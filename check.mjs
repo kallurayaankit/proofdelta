@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {compareDocs,reportHtml,sample} from './dist/diff.js';
+const deltas=compareDocs(sample.a,sample.b);
+assert.equal(deltas.length,3);
+assert.deepEqual(deltas.map(x=>[x.page,x.kind]),[[1,'Changed line'],[1,'Changed line'],[2,'Added line']]);
+assert.equal(compareDocs(sample.a,sample.a).length,0);
+assert.deepEqual(compareDocs({pages:['Net  160 g']},{pages:['Net 160 g']}),[]);
+assert(compareDocs({pages:['same','removed']},{pages:['same']}).some(d=>d.kind==='Page count'));
+const html=reportHtml({a:{name:'<script>',pages:['original']},b:sample.b,deltas,isSample:true});
+assert(html.includes('&lt;script&gt;'));assert(!html.includes('<script>'));assert(html.includes('Net weight: 160 g'));
+console.log('ProofDelta comparison and safe report checks passed.');

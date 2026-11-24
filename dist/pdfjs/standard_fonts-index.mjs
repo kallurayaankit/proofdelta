@@ -1,0 +1,1 @@
+export default {"FoxitDingbats.pfb":0,"FoxitFixed.pfb":1,"FoxitFixedBold.pfb":0,"FoxitFixedBoldItalic.pfb":1,"FoxitFixedItalic.pfb":0,"FoxitSerif.pfb":1,"FoxitSerifBold.pfb":0,"FoxitSerifBoldItalic.pfb":1,"FoxitSerifItalic.pfb":0,"FoxitSymbol.pfb":1,"LiberationSans-Bold.ttf":0,"LiberationSans-BoldItalic.ttf":1,"LiberationSans-Italic.ttf":0,"LiberationSans-Regular.ttf":1};
