@@ -1,0 +1,26 @@
+{
+  "fps": 24,
+  "duration": 37.233946,
+  "frames": 894,
+  "audio_speed": 1.0,
+  "scene_start_frames": [
+    0,
+    80,
+    233,
+    368,
+    429,
+    567,
+    700
+  ],
+  "scene_start_seconds": [
+    0.0,
+    3.3333333333333335,
+    9.708333333333334,
+    15.333333333333334,
+    17.875,
+    23.625,
+    29.166666666666668
+  ],
+  "timing_source": "HeyGen character alignment; exact script matched",
+  "review_limitations": "No full listening or real-time audiovisual playback available; alignment, frames and encoded streams checked."
+}

@@ -8,6 +8,8 @@ A packaging-proof review prototype: compare selectable text from an approved PDF
 
 [Watch the narrated walkthrough](launch/media/ProofDelta-Raya-Voice.mp4) — approximately 35 seconds, narrated with the existing Raya — My Voice clone in HeyGen at natural speed, matching the ReleaseRadar voice. It uses the real fictional sample differences; it is an illustrated walkthrough, not a screen recording. [Original silent edition](launch/media/ProofDelta-demo.mp4).
 
+[普通话演示视频（Raya 配音）](launch/media/ProofDelta-Mandarin-Raya.mp4) — approximately 37 seconds with Simplified Chinese on-screen labels; the original English sample PDFs are preserved.
+
 ![Example: sample net weight changes from 180 g to 160 g](launch/media/ProofDelta-cover.png)
 
 The two-page sample contains three differences: net weight changes from **180 g to 160 g**, **sunflower oil becomes canola oil**, and page 2 gains **Printer reference: 221B**.

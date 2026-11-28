@@ -14,3 +14,7 @@ The code export contains tracked project files, the launch assets and a public-f
 ## Raya narrated edition
 
 `media/ProofDelta-Raya-Voice.mp4` adds the existing Raya — My Voice narration at natural speed. Runtime is approximately 35 seconds; graphics follow the returned speech alignment. `narration.txt` contains the spoken script. The original silent edition is retained. Full stream decode, exact alignment text, seven scene layouts and audio levels were checked; full listening/playback review was unavailable. No social post was published.
+
+## Mandarin edition
+
+`media/ProofDelta-Mandarin-Raya.mp4` uses the existing Raya voice with language `zh`, natural speed, and Simplified Chinese graphic labels. The fictional source PDF images retain their original English text. Run `python launch/render_narrated.py --mandarin` with local narration inputs under `tmp/launch/mandarin/`. `mandarin_art.py` contains the translations; `narration-zh.txt` is the spoken script. Timing, seven layouts, full decode and audio levels were checked. Full listening and accent review were unavailable. English editions remain available.

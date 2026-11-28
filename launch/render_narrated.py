@@ -1,5 +1,5 @@
 """Render the Raya edition at the narration's natural speed.
-Run: python launch/render_narrated.py
+Run: python launch/render_narrated.py [--mandarin]
 Inputs (local only): tmp/launch/raya/narration-original.wav and
 speech-metadata.json containing paragraphs and HeyGen original_characters.
 Original audio stays unmodified. No voice cloning or synthesis occurs here.
@@ -8,8 +8,14 @@ from pathlib import Path
 import json, math, subprocess, sys
 from PIL import Image
 sys.dont_write_bytecode = True
-import render_demo as art
-ROOT=Path(__file__).resolve().parents[1]; P=ROOT/'tmp/launch/raya'
+mandarin = '--mandarin' in sys.argv
+if mandarin:
+    import mandarin_art as art
+else:
+    import render_demo as art
+ROOT=Path(__file__).resolve().parents[1]
+P=ROOT/('tmp/launch/mandarin' if mandarin else 'tmp/launch/raya')
+output_name='ProofDelta-Mandarin-Raya.mp4' if mandarin else 'ProofDelta-Raya-Voice.mp4'
 data=json.loads((P/'speech-metadata.json').read_text())
 chars=data['characters']; text=''.join(x['text'] for x in chars)
 assert text=='\n\n'.join(data['paragraphs'])
@@ -30,7 +36,7 @@ a=json.loads((P/'loudness.json').read_text());gain=min(-16-float(a['input_i']),-
 cmd=['ffmpeg','-y','-f','rawvideo','-pix_fmt','rgb24','-s','1280x720','-r',str(art.FPS),'-i','-',
      '-i',str(P/'narration-original.wav'),'-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','fast','-crf','21',
      '-pix_fmt','yuv420p','-af',f'volume={gain:.3f}dB','-c:a','aac','-b:a','192k','-ar','48000','-movflags','+faststart',
-     str(ROOT/'launch/media/ProofDelta-Raya-Voice.mp4')]
+     str(ROOT/'launch/media'/output_name)]
 p=subprocess.Popen(cmd,stdin=subprocess.PIPE,stderr=(P/'render.log').open('w'))
 def graphic(n):
     idx=next(i for i in range(7) if bounds[i]<=n<bounds[i+1])
